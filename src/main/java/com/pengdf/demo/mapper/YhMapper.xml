@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pengdf.demo.mapper.YhMapper">
+  <resultMap id="BaseResultMap" type="com.pengdf.demo.entity.Yh">
+    <id column="YHID" jdbcType="VARCHAR" property="yhid" />
+    <result column="YHMC" jdbcType="VARCHAR" property="yhmc" />
+    <result column="YHMM" jdbcType="VARCHAR" property="yhmm" />
+    <result column="YHZW" jdbcType="VARCHAR" property="yhzw" />
+    <result column="YHSJ" jdbcType="VARCHAR" property="yhsj" />
+    <result column="BGDH" jdbcType="VARCHAR" property="bgdh" />
+    <result column="PYJX" jdbcType="VARCHAR" property="pyjx" />
+    <result column="BMBH" jdbcType="VARCHAR" property="bmbh" />
+    <result column="XB" jdbcType="VARCHAR" property="xb" />
+    <result column="SFYX" jdbcType="DECIMAL" property="sfyx" />
+    <result column="SFZG" jdbcType="DECIMAL" property="sfzg" />
+    <result column="PXH" jdbcType="DECIMAL" property="pxh" />
+    <result column="NWYX" jdbcType="VARCHAR" property="nwyx" />
+    <result column="NWYXMM" jdbcType="VARCHAR" property="nwyxmm" />
+    <result column="WWYX" jdbcType="VARCHAR" property="wwyx" />
+    <result column="WWYXMM" jdbcType="VARCHAR" property="wwyxmm" />
+    <result column="ORGID" jdbcType="VARCHAR" property="orgid" />
+    <result column="YHBJ" jdbcType="VARCHAR" property="yhbj" />
+    <result column="CJR" jdbcType="VARCHAR" property="cjr" />
+    <result column="CJSJ" jdbcType="DATE" property="cjsj" />
+    <result column="XGR" jdbcType="VARCHAR" property="xgr" />
+    <result column="XGSJ" jdbcType="DATE" property="xgsj" />
+    <result column="ZDYS" jdbcType="VARCHAR" property="zdys" />
+    <result column="YHJB" jdbcType="VARCHAR" property="yhjb" />
+    <result column="YHCW" jdbcType="VARCHAR" property="yhcw" />
+    <result column="YHSJ_BAK" jdbcType="VARCHAR" property="yhsjBak" />
+    <result column="BMBH_BAK" jdbcType="VARCHAR" property="bmbhBak" />
+    <result column="CSRQ" jdbcType="DATE" property="csrq" />
+    <result column="SFDC" jdbcType="VARCHAR" property="sfdc" />
+    <result column="ZFSJ" jdbcType="VARCHAR" property="zfsj" />
+    <result column="SJDH" jdbcType="VARCHAR" property="sjdh" />
+    <result column="BGDHDH" jdbcType="VARCHAR" property="bgdhdh" />
+    <result column="ZZDH" jdbcType="VARCHAR" property="zzdh" />
+    <result column="SFLD" jdbcType="VARCHAR" property="sfld" />
+    <result column="BGDZ" jdbcType="VARCHAR" property="bgdz" />
+    <result column="ZHDLSJ" jdbcType="DATE" property="zhdlsj" />
+    <result column="YHDH" jdbcType="VARCHAR" property="yhdh" />
+    <result column="SFWTRW" jdbcType="CHAR" property="sfwtrw" />
+    <result column="SQKSSJ" jdbcType="DATE" property="sqkssj" />
+    <result column="SQJZSJ" jdbcType="DATE" property="sqjzsj" />
+    <result column="FONTSTYLE" jdbcType="VARCHAR" property="fontstyle" />
+    <result column="CWCS" jdbcType="DECIMAL" property="cwcs" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    YHID, YHMC, YHMM, YHZW, YHSJ, BGDH, PYJX, BMBH, XB, SFYX, SFZG, PXH, NWYX, NWYXMM, 
+    WWYX, WWYXMM, ORGID, YHBJ, CJR, CJSJ, XGR, XGSJ, ZDYS, YHJB, YHCW, YHSJ_BAK, BMBH_BAK, 
+    CSRQ, SFDC, ZFSJ, SJDH, BGDHDH, ZZDH, SFLD, BGDZ, ZHDLSJ, YHDH, SFWTRW, SQKSSJ, SQJZSJ, 
+    FONTSTYLE, CWCS
+  </sql>
+  <select id="selectByExample" parameterType="com.pengdf.demo.entity.YhExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from U_YC_SJZX_JCK.T_ADMIN_RMS_YH
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from U_YC_SJZX_JCK.T_ADMIN_RMS_YH
+    where YHID = #{yhid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from U_YC_SJZX_JCK.T_ADMIN_RMS_YH
+    where YHID = #{yhid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.pengdf.demo.entity.Yh">
+    insert into U_YC_SJZX_JCK.T_ADMIN_RMS_YH (YHID, YHMC, YHMM, 
+      YHZW, YHSJ, BGDH, PYJX, 
+      BMBH, XB, SFYX, SFZG, 
+      PXH, NWYX, NWYXMM, 
+      WWYX, WWYXMM, ORGID, 
+      YHBJ, CJR, CJSJ, XGR, 
+      XGSJ, ZDYS, YHJB, YHCW, 
+      YHSJ_BAK, BMBH_BAK, CSRQ, 
+      SFDC, ZFSJ, SJDH, BGDHDH, 
+      ZZDH, SFLD, BGDZ, ZHDLSJ, 
+      YHDH, SFWTRW, SQKSSJ, SQJZSJ, 
+      FONTSTYLE, CWCS)
+    values (#{yhid,jdbcType=VARCHAR}, #{yhmc,jdbcType=VARCHAR}, #{yhmm,jdbcType=VARCHAR}, 
+      #{yhzw,jdbcType=VARCHAR}, #{yhsj,jdbcType=VARCHAR}, #{bgdh,jdbcType=VARCHAR}, #{pyjx,jdbcType=VARCHAR}, 
+      #{bmbh,jdbcType=VARCHAR}, #{xb,jdbcType=VARCHAR}, #{sfyx,jdbcType=DECIMAL}, #{sfzg,jdbcType=DECIMAL}, 
+      #{pxh,jdbcType=DECIMAL}, #{nwyx,jdbcType=VARCHAR}, #{nwyxmm,jdbcType=VARCHAR}, 
+      #{wwyx,jdbcType=VARCHAR}, #{wwyxmm,jdbcType=VARCHAR}, #{orgid,jdbcType=VARCHAR}, 
+      #{yhbj,jdbcType=VARCHAR}, #{cjr,jdbcType=VARCHAR}, #{cjsj,jdbcType=DATE}, #{xgr,jdbcType=VARCHAR}, 
+      #{xgsj,jdbcType=DATE}, #{zdys,jdbcType=VARCHAR}, #{yhjb,jdbcType=VARCHAR}, #{yhcw,jdbcType=VARCHAR}, 
+      #{yhsjBak,jdbcType=VARCHAR}, #{bmbhBak,jdbcType=VARCHAR}, #{csrq,jdbcType=DATE}, 
+      #{sfdc,jdbcType=VARCHAR}, #{zfsj,jdbcType=VARCHAR}, #{sjdh,jdbcType=VARCHAR}, #{bgdhdh,jdbcType=VARCHAR}, 
+      #{zzdh,jdbcType=VARCHAR}, #{sfld,jdbcType=VARCHAR}, #{bgdz,jdbcType=VARCHAR}, #{zhdlsj,jdbcType=DATE}, 
+      #{yhdh,jdbcType=VARCHAR}, #{sfwtrw,jdbcType=CHAR}, #{sqkssj,jdbcType=DATE}, #{sqjzsj,jdbcType=DATE}, 
+      #{fontstyle,jdbcType=VARCHAR}, #{cwcs,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pengdf.demo.entity.Yh">
+    insert into U_YC_SJZX_JCK.T_ADMIN_RMS_YH
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="yhid != null">
+        YHID,
+      </if>
+      <if test="yhmc != null">
+        YHMC,
+      </if>
+      <if test="yhmm != null">
+        YHMM,
+      </if>
+      <if test="yhzw != null">
+        YHZW,
+      </if>
+      <if test="yhsj != null">
+        YHSJ,
+      </if>
+      <if test="bgdh != null">
+        BGDH,
+      </if>
+      <if test="pyjx != null">
+        PYJX,
+      </if>
+      <if test="bmbh != null">
+        BMBH,
+      </if>
+      <if test="xb != null">
+        XB,
+      </if>
+      <if test="sfyx != null">
+        SFYX,
+      </if>
+      <if test="sfzg != null">
+        SFZG,
+      </if>
+      <if test="pxh != null">
+        PXH,
+      </if>
+      <if test="nwyx != null">
+        NWYX,
+      </if>
+      <if test="nwyxmm != null">
+        NWYXMM,
+      </if>
+      <if test="wwyx != null">
+        WWYX,
+      </if>
+      <if test="wwyxmm != null">
+        WWYXMM,
+      </if>
+      <if test="orgid != null">
+        ORGID,
+      </if>
+      <if test="yhbj != null">
+        YHBJ,
+      </if>
+      <if test="cjr != null">
+        CJR,
+      </if>
+      <if test="cjsj != null">
+        CJSJ,
+      </if>
+      <if test="xgr != null">
+        XGR,
+      </if>
+      <if test="xgsj != null">
+        XGSJ,
+      </if>
+      <if test="zdys != null">
+        ZDYS,
+      </if>
+      <if test="yhjb != null">
+        YHJB,
+      </if>
+      <if test="yhcw != null">
+        YHCW,
+      </if>
+      <if test="yhsjBak != null">
+        YHSJ_BAK,
+      </if>
+      <if test="bmbhBak != null">
+        BMBH_BAK,
+      </if>
+      <if test="csrq != null">
+        CSRQ,
+      </if>
+      <if test="sfdc != null">
+        SFDC,
+      </if>
+      <if test="zfsj != null">
+        ZFSJ,
+      </if>
+      <if test="sjdh != null">
+        SJDH,
+      </if>
+      <if test="bgdhdh != null">
+        BGDHDH,
+      </if>
+      <if test="zzdh != null">
+        ZZDH,
+      </if>
+      <if test="sfld != null">
+        SFLD,
+      </if>
+      <if test="bgdz != null">
+        BGDZ,
+      </if>
+      <if test="zhdlsj != null">
+        ZHDLSJ,
+      </if>
+      <if test="yhdh != null">
+        YHDH,
+      </if>
+      <if test="sfwtrw != null">
+        SFWTRW,
+      </if>
+      <if test="sqkssj != null">
+        SQKSSJ,
+      </if>
+      <if test="sqjzsj != null">
+        SQJZSJ,
+      </if>
+      <if test="fontstyle != null">
+        FONTSTYLE,
+      </if>
+      <if test="cwcs != null">
+        CWCS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="yhid != null">
+        #{yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="yhmc != null">
+        #{yhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="yhmm != null">
+        #{yhmm,jdbcType=VARCHAR},
+      </if>
+      <if test="yhzw != null">
+        #{yhzw,jdbcType=VARCHAR},
+      </if>
+      <if test="yhsj != null">
+        #{yhsj,jdbcType=VARCHAR},
+      </if>
+      <if test="bgdh != null">
+        #{bgdh,jdbcType=VARCHAR},
+      </if>
+      <if test="pyjx != null">
+        #{pyjx,jdbcType=VARCHAR},
+      </if>
+      <if test="bmbh != null">
+        #{bmbh,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        #{xb,jdbcType=VARCHAR},
+      </if>
+      <if test="sfyx != null">
+        #{sfyx,jdbcType=DECIMAL},
+      </if>
+      <if test="sfzg != null">
+        #{sfzg,jdbcType=DECIMAL},
+      </if>
+      <if test="pxh != null">
+        #{pxh,jdbcType=DECIMAL},
+      </if>
+      <if test="nwyx != null">
+        #{nwyx,jdbcType=VARCHAR},
+      </if>
+      <if test="nwyxmm != null">
+        #{nwyxmm,jdbcType=VARCHAR},
+      </if>
+      <if test="wwyx != null">
+        #{wwyx,jdbcType=VARCHAR},
+      </if>
+      <if test="wwyxmm != null">
+        #{wwyxmm,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null">
+        #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="yhbj != null">
+        #{yhbj,jdbcType=VARCHAR},
+      </if>
+      <if test="cjr != null">
+        #{cjr,jdbcType=VARCHAR},
+      </if>
+      <if test="cjsj != null">
+        #{cjsj,jdbcType=DATE},
+      </if>
+      <if test="xgr != null">
+        #{xgr,jdbcType=VARCHAR},
+      </if>
+      <if test="xgsj != null">
+        #{xgsj,jdbcType=DATE},
+      </if>
+      <if test="zdys != null">
+        #{zdys,jdbcType=VARCHAR},
+      </if>
+      <if test="yhjb != null">
+        #{yhjb,jdbcType=VARCHAR},
+      </if>
+      <if test="yhcw != null">
+        #{yhcw,jdbcType=VARCHAR},
+      </if>
+      <if test="yhsjBak != null">
+        #{yhsjBak,jdbcType=VARCHAR},
+      </if>
+      <if test="bmbhBak != null">
+        #{bmbhBak,jdbcType=VARCHAR},
+      </if>
+      <if test="csrq != null">
+        #{csrq,jdbcType=DATE},
+      </if>
+      <if test="sfdc != null">
+        #{sfdc,jdbcType=VARCHAR},
+      </if>
+      <if test="zfsj != null">
+        #{zfsj,jdbcType=VARCHAR},
+      </if>
+      <if test="sjdh != null">
+        #{sjdh,jdbcType=VARCHAR},
+      </if>
+      <if test="bgdhdh != null">
+        #{bgdhdh,jdbcType=VARCHAR},
+      </if>
+      <if test="zzdh != null">
+        #{zzdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfld != null">
+        #{sfld,jdbcType=VARCHAR},
+      </if>
+      <if test="bgdz != null">
+        #{bgdz,jdbcType=VARCHAR},
+      </if>
+      <if test="zhdlsj != null">
+        #{zhdlsj,jdbcType=DATE},
+      </if>
+      <if test="yhdh != null">
+        #{yhdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfwtrw != null">
+        #{sfwtrw,jdbcType=CHAR},
+      </if>
+      <if test="sqkssj != null">
+        #{sqkssj,jdbcType=DATE},
+      </if>
+      <if test="sqjzsj != null">
+        #{sqjzsj,jdbcType=DATE},
+      </if>
+      <if test="fontstyle != null">
+        #{fontstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="cwcs != null">
+        #{cwcs,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pengdf.demo.entity.Yh">
+    update U_YC_SJZX_JCK.T_ADMIN_RMS_YH
+    <set>
+      <if test="yhmc != null">
+        YHMC = #{yhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="yhmm != null">
+        YHMM = #{yhmm,jdbcType=VARCHAR},
+      </if>
+      <if test="yhzw != null">
+        YHZW = #{yhzw,jdbcType=VARCHAR},
+      </if>
+      <if test="yhsj != null">
+        YHSJ = #{yhsj,jdbcType=VARCHAR},
+      </if>
+      <if test="bgdh != null">
+        BGDH = #{bgdh,jdbcType=VARCHAR},
+      </if>
+      <if test="pyjx != null">
+        PYJX = #{pyjx,jdbcType=VARCHAR},
+      </if>
+      <if test="bmbh != null">
+        BMBH = #{bmbh,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        XB = #{xb,jdbcType=VARCHAR},
+      </if>
+      <if test="sfyx != null">
+        SFYX = #{sfyx,jdbcType=DECIMAL},
+      </if>
+      <if test="sfzg != null">
+        SFZG = #{sfzg,jdbcType=DECIMAL},
+      </if>
+      <if test="pxh != null">
+        PXH = #{pxh,jdbcType=DECIMAL},
+      </if>
+      <if test="nwyx != null">
+        NWYX = #{nwyx,jdbcType=VARCHAR},
+      </if>
+      <if test="nwyxmm != null">
+        NWYXMM = #{nwyxmm,jdbcType=VARCHAR},
+      </if>
+      <if test="wwyx != null">
+        WWYX = #{wwyx,jdbcType=VARCHAR},
+      </if>
+      <if test="wwyxmm != null">
+        WWYXMM = #{wwyxmm,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null">
+        ORGID = #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="yhbj != null">
+        YHBJ = #{yhbj,jdbcType=VARCHAR},
+      </if>
+      <if test="cjr != null">
+        CJR = #{cjr,jdbcType=VARCHAR},
+      </if>
+      <if test="cjsj != null">
+        CJSJ = #{cjsj,jdbcType=DATE},
+      </if>
+      <if test="xgr != null">
+        XGR = #{xgr,jdbcType=VARCHAR},
+      </if>
+      <if test="xgsj != null">
+        XGSJ = #{xgsj,jdbcType=DATE},
+      </if>
+      <if test="zdys != null">
+        ZDYS = #{zdys,jdbcType=VARCHAR},
+      </if>
+      <if test="yhjb != null">
+        YHJB = #{yhjb,jdbcType=VARCHAR},
+      </if>
+      <if test="yhcw != null">
+        YHCW = #{yhcw,jdbcType=VARCHAR},
+      </if>
+      <if test="yhsjBak != null">
+        YHSJ_BAK = #{yhsjBak,jdbcType=VARCHAR},
+      </if>
+      <if test="bmbhBak != null">
+        BMBH_BAK = #{bmbhBak,jdbcType=VARCHAR},
+      </if>
+      <if test="csrq != null">
+        CSRQ = #{csrq,jdbcType=DATE},
+      </if>
+      <if test="sfdc != null">
+        SFDC = #{sfdc,jdbcType=VARCHAR},
+      </if>
+      <if test="zfsj != null">
+        ZFSJ = #{zfsj,jdbcType=VARCHAR},
+      </if>
+      <if test="sjdh != null">
+        SJDH = #{sjdh,jdbcType=VARCHAR},
+      </if>
+      <if test="bgdhdh != null">
+        BGDHDH = #{bgdhdh,jdbcType=VARCHAR},
+      </if>
+      <if test="zzdh != null">
+        ZZDH = #{zzdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfld != null">
+        SFLD = #{sfld,jdbcType=VARCHAR},
+      </if>
+      <if test="bgdz != null">
+        BGDZ = #{bgdz,jdbcType=VARCHAR},
+      </if>
+      <if test="zhdlsj != null">
+        ZHDLSJ = #{zhdlsj,jdbcType=DATE},
+      </if>
+      <if test="yhdh != null">
+        YHDH = #{yhdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfwtrw != null">
+        SFWTRW = #{sfwtrw,jdbcType=CHAR},
+      </if>
+      <if test="sqkssj != null">
+        SQKSSJ = #{sqkssj,jdbcType=DATE},
+      </if>
+      <if test="sqjzsj != null">
+        SQJZSJ = #{sqjzsj,jdbcType=DATE},
+      </if>
+      <if test="fontstyle != null">
+        FONTSTYLE = #{fontstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="cwcs != null">
+        CWCS = #{cwcs,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where YHID = #{yhid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pengdf.demo.entity.Yh">
+    update U_YC_SJZX_JCK.T_ADMIN_RMS_YH
+    set YHMC = #{yhmc,jdbcType=VARCHAR},
+      YHMM = #{yhmm,jdbcType=VARCHAR},
+      YHZW = #{yhzw,jdbcType=VARCHAR},
+      YHSJ = #{yhsj,jdbcType=VARCHAR},
+      BGDH = #{bgdh,jdbcType=VARCHAR},
+      PYJX = #{pyjx,jdbcType=VARCHAR},
+      BMBH = #{bmbh,jdbcType=VARCHAR},
+      XB = #{xb,jdbcType=VARCHAR},
+      SFYX = #{sfyx,jdbcType=DECIMAL},
+      SFZG = #{sfzg,jdbcType=DECIMAL},
+      PXH = #{pxh,jdbcType=DECIMAL},
+      NWYX = #{nwyx,jdbcType=VARCHAR},
+      NWYXMM = #{nwyxmm,jdbcType=VARCHAR},
+      WWYX = #{wwyx,jdbcType=VARCHAR},
+      WWYXMM = #{wwyxmm,jdbcType=VARCHAR},
+      ORGID = #{orgid,jdbcType=VARCHAR},
+      YHBJ = #{yhbj,jdbcType=VARCHAR},
+      CJR = #{cjr,jdbcType=VARCHAR},
+      CJSJ = #{cjsj,jdbcType=DATE},
+      XGR = #{xgr,jdbcType=VARCHAR},
+      XGSJ = #{xgsj,jdbcType=DATE},
+      ZDYS = #{zdys,jdbcType=VARCHAR},
+      YHJB = #{yhjb,jdbcType=VARCHAR},
+      YHCW = #{yhcw,jdbcType=VARCHAR},
+      YHSJ_BAK = #{yhsjBak,jdbcType=VARCHAR},
+      BMBH_BAK = #{bmbhBak,jdbcType=VARCHAR},
+      CSRQ = #{csrq,jdbcType=DATE},
+      SFDC = #{sfdc,jdbcType=VARCHAR},
+      ZFSJ = #{zfsj,jdbcType=VARCHAR},
+      SJDH = #{sjdh,jdbcType=VARCHAR},
+      BGDHDH = #{bgdhdh,jdbcType=VARCHAR},
+      ZZDH = #{zzdh,jdbcType=VARCHAR},
+      SFLD = #{sfld,jdbcType=VARCHAR},
+      BGDZ = #{bgdz,jdbcType=VARCHAR},
+      ZHDLSJ = #{zhdlsj,jdbcType=DATE},
+      YHDH = #{yhdh,jdbcType=VARCHAR},
+      SFWTRW = #{sfwtrw,jdbcType=CHAR},
+      SQKSSJ = #{sqkssj,jdbcType=DATE},
+      SQJZSJ = #{sqjzsj,jdbcType=DATE},
+      FONTSTYLE = #{fontstyle,jdbcType=VARCHAR},
+      CWCS = #{cwcs,jdbcType=DECIMAL}
+    where YHID = #{yhid,jdbcType=VARCHAR}
+  </update>
+</mapper>

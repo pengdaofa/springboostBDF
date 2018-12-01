@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+<!-- 执行方式： mybatis-generator:generate -->
+    
+    <!-- 引入配置文件 -->  
+    <properties resource="application.properties"/>
+    
+    <!--例：/Users/pengsijia/.m2/repository/com/oracle/ojdbc6/1.0.1/ojdbc6-1.0.1.jar)-->
+    <classPathEntry location="D:\Program Files\maven\repository\com\szboanda\oracle\ojdbc14\10.2.0.4.0\ojdbc14-10.2.0.4.0.jar" />
+            <context id="OracleTables" targetRuntime="MyBatis3">
+    <commentGenerator>
+        <property name="suppressAllComments" value="true"/>
+    </commentGenerator>
+    <!--例： 驱动类：oracle.jdbc.driver.OracleDriver
+            URL 地址：jdbc:oracle:thin:@121.43.171.12:1521:orcl
+            用户名：ICEHYYL
+            密码：XSFvYmjcFNxl94kP
+              -->
+     <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
+        connectionURL="${spring.datasource.url}"
+        userId="${spring.datasource.username}"        
+        password="${spring.datasource.password}">
+    </jdbcConnection>
+  <javaTypeResolver>
+     <property name="forceBigDecimals" value="false"/>
+  </javaTypeResolver>
+  <javaModelGenerator targetPackage="com.pengdf.demo.entity" targetProject="src/main/java">
+      <property name="enableSubPackages" value="false"/>
+      <property name="trimStrings" value="true"/>
+  </javaModelGenerator>
+  <sqlMapGenerator targetPackage="com.pengdf.demo.mapper" targetProject="src/main/java">
+       <property name="enableSubPackages" value="false"/>
+  </sqlMapGenerator>
+  <javaClientGenerator type="XMLMAPPER" targetPackage="com.pengdf.demo.mapper" targetProject="src/main/java">
+    <property name="enableSubPackages" value="false"/>
+  </javaClientGenerator>
+  <!-- 例： 查询的表名：SETTLEACCOUNT
+           自定义的实体类名称：SettleAccount
+     schema：在oracle中 如果没有schema，可能会导致重复生成代码
+        -->
+  <table schema="U_YC_SJZX_JCK"  tableName="T_ADMIN_RMS_YH" domainObjectName="Yh"  enableCountByExample="false" enableSelectByExample="true" enableUpdateByExample="false" enableDeleteByExample="false">
+  </table>
+</context>
+</generatorConfiguration>
