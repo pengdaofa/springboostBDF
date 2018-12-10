@@ -5,8 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ProjectApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(ProjectApplication.class, args);
-	}
+    /**
+     * 热部署的启动方式： spring-boot:run
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        SpringApplication.run(ProjectApplication.class, args);
+    }
 }
