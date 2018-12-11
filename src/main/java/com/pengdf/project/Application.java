@@ -4,13 +4,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProjectApplication {
+public class Application {
     /**
      * 热部署的启动方式： spring-boot:run
      *
      * @param args
      */
     public static void main(String[] args) {
-        SpringApplication.run(ProjectApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }
