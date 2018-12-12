@@ -12,7 +12,7 @@ public class IndexController {
 
     @GetMapping(value = "/")
     public String index(Model model) {
-        String name = "project";
+        String name = "基础开发框架";
         model.addAttribute("name", name);
         return "index";
     }
