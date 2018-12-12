@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /project
+
+spring:
+  thymeleaf:
+    cache: false
+    check-template: false
+    encoding: UTF-8
+    mode: LEGACYHTML5
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/projectdb?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false&
+    username: root
+    password: 123456
+
+
+  # Mybatis
+mybatis:
+#  type-aliases-package: com.pengdf.**.entity
+  mapper-locations : classpath*:mapper/**/*.xml
+
